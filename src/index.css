@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Esta es la forma estándar de v4 para activar el modo oscuro por clase */
+@theme {
+  --color-vintage-cream: #f4f1de;
+  --color-vintage-red: #8b2635;
+  --color-navy-dark: #0f172a;
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+  --font-display: "Satoshi", "sans-serif";
+}
+
+/* Forzar que dark: funcione con la clase .dark */
+@variant dark (&:where(.dark, .dark *));
+
+/* Estilos base para evitar el azul */
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-300;
+  }
+  html.dark body {
+    @apply bg-[--color-vintage-cream] text-zinc-900 dark:bg-[--color-navy-dark] dark:text-zinc-100 transition-colors duration-300;
+  }
+}
